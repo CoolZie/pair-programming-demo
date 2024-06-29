@@ -3,13 +3,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
 import com.tiktok.Main;
 
-public class StreamTest {
+public class StreamlambdaTest {
     /**
      * Écrire une méthode `filterEvenNumbers` qui prend une liste d'entiers 
      * et retourne une nouvelle liste contenant uniquement les nombres pairs.
@@ -347,6 +349,102 @@ public class StreamTest {
 
         // Assertion
         assertEquals(expected, result);
+    }
+
+
+    /**
+     * Test de la méthode `averageOfList`.
+     * Énoncé : Écrire une méthode qui prend une liste d'entiers et retourne la moyenne de tous les éléments.
+     */
+    @Test
+    public void testAverageOfList() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        double expected = 3.0;
+
+        double result = Main.averageOfList(list);
+
+        assertEquals(expected, result);
+    }
+
+    /**
+     * Test de la méthode `collectToMap`.
+     * Énoncé : Écrire une méthode qui prend une liste de chaînes de caractères et retourne une map où les clés sont les chaînes elles-mêmes 
+     * et les valeurs sont leur longueur.
+     */
+    @Test
+    public void testCollectToMap() {
+        List<String> list = Arrays.asList("apple", "banana", "kiwi");
+        Map<String, Integer> expected = Map.of(
+                "apple", 5,
+                "banana", 6,
+                "kiwi", 4
+        );
+
+        Map<String, Integer> result = Main.collectToMap(list);
+
+        assertEquals(expected, result);
+    }
+
+    /**
+     * Test de la méthode `findLongestString`.
+     * Énoncé : Écrire une méthode qui prend une liste de chaînes de caractères et retourne la chaîne la plus longue.
+     */
+    @Test
+    public void testFindLongestString() {
+        List<String> list = Arrays.asList("apple", "banana", "kiwi", "orange");
+        String expected = "banana";
+
+        String result = Main.findLongestString(list);
+
+        assertEquals(expected, result);
+    }
+
+    /**
+     * Test de la méthode `concatenateStrings`.
+     * Énoncé : Écrire une méthode qui prend une liste de chaînes de caractères et retourne une seule chaîne concaténant toutes les chaînes de la liste.
+     */
+    @Test
+    public void testConcatenateStrings() {
+        List<String> list = Arrays.asList("Hello", " ", "world", "!");
+        String expected = "Hello world!";
+
+        String result = Main.concatenateStrings(list);
+
+        assertEquals(expected, result);
+    }
+
+    /**
+     * Test de la méthode `composeFunctions`.
+     * Énoncé : Écrire une méthode qui prend deux fonctions (une pour doubler et une pour ajouter 3) et retourne une nouvelle fonction qui double puis ajoute 3 à un entier donné.
+     */
+    @Test
+    public void testComposeFunctions() {
+        Function<Integer, Integer> doubleFunction = n -> n * 2;
+        Function<Integer, Integer> addThreeFunction = n -> n + 3;
+
+        Function<Integer, Integer> composedFunction = Main.composeFunctions(doubleFunction, addThreeFunction);
+
+        int result1 = composedFunction.apply(5);
+        int result2 = composedFunction.apply(10);
+
+        assertEquals(13, result1);
+        assertEquals(23, result2);
+    }
+
+    /**
+     * Test de la méthode `optionalOperations`.
+     * Énoncé : Écrire une méthode qui prend un optional contenant un entier et retourne une chaîne "Even" si l'entier est pair, sinon "Odd".
+     */
+    @Test
+    public void testOptionalOperations() {
+        Optional<Integer> evenNumber = Optional.of(4);
+        Optional<Integer> oddNumber = Optional.of(7);
+
+        String result1 = Main.optionalOperations(evenNumber);
+        String result2 = Main.optionalOperations(oddNumber);
+
+        assertEquals("Even", result1);
+        assertEquals("Odd", result2);
     }
 
 
