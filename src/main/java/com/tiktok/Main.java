@@ -57,9 +57,8 @@ public class Main {
         throw new UnsupportedOperationException("Unimplemented method 'isPalindrome'");
     }
 
-    public static Object reverseString(String string) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'reverseString'");
+    public static String reverseString(String string) {
+        throw new UnsupportedOperationException("Unimplemented method 'isPalindrome'");
     }
 
     public static Map<Boolean, List<Integer>> groupByCustomCondition(List<Integer> numbers) {
